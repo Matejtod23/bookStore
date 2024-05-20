@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row d-flex justify-content-end">
+    <a href="{% url 'add_book' %}" class="btn btn-info col-1" style="margin-right: 20px">Додади книга</a>
+</div>
+    <div class="cardholder">
+        <div id="cards">
+	    {% for book in books %}
+		    <a href="{% url 'details' book.id %}" style="cursor: pointer">
+            <div class="card text-center" style="width: 18rem;">
+  		    <img src="{{MEDIA_URL}}{{book.image.url}}" class="card-img-top" alt="...">
+  		    <div class="card-body">
+    		    <h5 class="card-title">{{book.title}}</h5>
+    		    <p class="card-text">Цена: {{book.price}}</p>
+  		    </div>
+		    </div>
+            </a>
+	    {% endfor %}
+        </div>
+    </div>
+
+
+<style>
+    .cardholder{
+        display: flex;
+        justify-content: center;
+    }
+    #cards {
+        width: 80%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+    }
+</style>
+{% endblock %}
+
